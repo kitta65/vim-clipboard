@@ -27,7 +27,7 @@ else
   finish
 endif
 
-function Yank()
+function! s:Yank()
   let original_value = @c
   let original_position = getpos(".")
   normal! `<
@@ -37,7 +37,7 @@ function Yank()
   call cursor(original_position[1], original_position[2])
 endfunction
 
-function Paste()
+function! s:Put()
   let original_line = line(".")
   " See :help i_0_CTRL-D
   execute "normal! a\r0\<c-d>\<esc>\<up>"
@@ -45,5 +45,5 @@ function Paste()
   execute "normal! gJ" . original_line . "GgJ"
 endfunction
 
-vnoremap <leader>y <esc>:call Yank()<cr>
-nnoremap <leader>v <esc>:call Paste()<cr>
+command! ClipboardYank call <SID>Yank()
+command! ClipboardPut call <SID>Put()
