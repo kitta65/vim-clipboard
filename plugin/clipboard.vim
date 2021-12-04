@@ -23,6 +23,7 @@ elseif s:os ==# "mac"
   let s:yank_command = "pbcopy"
   let s:paste_command = "pbpaste"
 else
+  echom "Cannot find necessary commands in your PATH."
   finish
 endif
 
