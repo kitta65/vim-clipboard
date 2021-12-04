@@ -18,7 +18,7 @@ endif
 
 if s:os ==# "windows"
   let s:yank_command = "clip.exe"
-  let s:paste_command = "powershell Get-Clipboard"
+  let s:paste_command = "powershell.exe Get-Clipboard"
 elseif s:os ==# "mac"
   let s:yank_command = "pbcopy"
   let s:paste_command = "pbpaste"
@@ -37,4 +37,13 @@ function Yank()
   call cursor(original_position[1], original_position[2])
 endfunction
 
+function Paste()
+  let original_line = line(".")
+  " See :help i_0_CTRL-D
+  execute "normal! a\r0\<c-d>\<esc>\<up>"
+  execute "read !" . s:paste_command
+  execute "normal! gJ" . original_line . "GgJ"
+endfunction
+
 vnoremap <leader>y <esc>:call Yank()<cr>
+nnoremap <leader>v <esc>:call Paste()<cr>
