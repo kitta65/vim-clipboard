@@ -39,10 +39,13 @@ endfunction
 
 function! s:Put()
   let original_line = line(".")
+  let original_formatoptions = &formatoptions
+  set formatoptions-=ro
   " See :help i_0_CTRL-D
   execute "normal! a\r0\<c-d>\<esc>\<up>"
   execute "read !" . s:paste_command
   execute "normal! gJ" . original_line . "GgJ"
+  &formatoptions = original_formatoptions
 endfunction
 
 command! ClipboardYank call <SID>Yank()
