@@ -45,7 +45,7 @@ function! s:Put()
   execute "normal! a\r0\<c-d>\<esc>\<up>"
   execute "read !" . s:paste_command
   execute "normal! gJ" . original_line . "GgJ"
-  &formatoptions = original_formatoptions
+  let &formatoptions = original_formatoptions
 endfunction
 
 command! ClipboardYank call <SID>Yank()
