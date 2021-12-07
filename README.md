@@ -8,8 +8,8 @@
 These commands need to be available in your PATH.
 
 ### for WSL
-* powershell.exe
 * clip.exe
+* powershell.exe
 
 ### for Mac
 * pbcopy

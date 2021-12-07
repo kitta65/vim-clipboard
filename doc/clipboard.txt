@@ -1,0 +1,37 @@
+*vim-clipboard.txt* Simple vim plugin to use clipboard.
+
+Version: 0.0.1
+Author: dr666m1 <skndr666m1 at gmail.com>
+License: MIT license
+
+==============================================================================
+CONTENTS *vim-clipboard-contents*
+
+Usage |vim-clipboard-usage|
+Requirements |vim-clipboard-requirements|
+
+==============================================================================
+USAGE *vim-clipboard-usage*
+
+This plugin provides only two commands.
+
+Save most recently selected text into clipboard by: >
+
+  :ClipboardPut
+
+Paste clipboard text after the cursor by: >
+
+  :ClipboardPut
+
+==============================================================================
+REQUIREMETNS *vim-clipboard-requirements*
+
+These commands need to be available in your PATH.
+
+for WSL:
+  clip.exe
+  powershell.exe
+
+for Mac:
+  pbcopy
+  pbpaste
