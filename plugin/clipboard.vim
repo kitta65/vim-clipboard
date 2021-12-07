@@ -4,22 +4,10 @@ endif
 
 let g:loaded_clipboard = 1
 
-silent !which clip.exe && which powershell.exe
-if v:shell_error
-  silent !which pbcopy && which pbpaste
-  if v:shell_error
-    let s:os = "unknown"
-  else
-    let s:os = "mac"
-  endif
-else
-  let s:os = "windows"
-endif
-
-if s:os ==# "windows"
+if executable("clip.exe") && executable("powershell.exe")
   let s:yank_command = "clip.exe"
   let s:paste_command = "powershell.exe Get-Clipboard"
-elseif s:os ==# "mac"
+elseif executable("pbcopy") && executable("pbpaste")
   let s:yank_command = "pbcopy"
   let s:paste_command = "pbpaste"
 else
