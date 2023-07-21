@@ -5,8 +5,14 @@ endif
 let g:loaded_clipboard = 1
 
 if executable("clip.exe") && executable("powershell.exe")
-  let s:yank_command = "clip.exe"
-  let s:paste_command = "powershell.exe Get-Clipboard"
+  let s:encoding = $VIM_CLIPBOARD_ENCODING
+  if s:encoding ==# ""
+    let s:yank_command = "clip.exe"
+    let s:paste_command = "powershell.exe Get-Clipboard"
+  else
+    let s:yank_command = "iconv -t " .. s:encoding .. " | clip.exe"
+    let s:paste_command = "powershell.exe Get-Clipboard | iconv -f " .. s:encoding .. " -t utf8"
+  endif
 elseif executable("pbcopy") && executable("pbpaste")
   let s:yank_command = "pbcopy"
   let s:paste_command = "pbpaste"
