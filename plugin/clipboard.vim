@@ -6,7 +6,7 @@ let g:loaded_clipboard = 1
 
 if executable("clip.exe") && executable("powershell.exe")
   let s:yank_command = "iconv -t cp932 | clip.exe"
-  let s:paste_command = "powershell.exe Get-Clipboard"
+  let s:paste_command = "powershell.exe Get-Clipboard | iconv -f cp932 -t utf-8"
 elseif executable("pbcopy") && executable("pbpaste")
   let s:yank_command = "pbcopy"
   let s:paste_command = "pbpaste"
