@@ -33,3 +33,10 @@ vnoremap <leader>y <esc>:ClipboardYank<cr>
 " Paste clipboard text after the cursor
 nnoremap <leader>v :ClipboardPut<cr>
 ```
+
+## Advanced settings
+You can specify encoding.
+
+```sh
+export VIM_CLIPBOARD_ENCODING=cp932
+```
